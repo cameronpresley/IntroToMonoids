@@ -48,9 +48,9 @@ let main argv =
     Check.Quick concatIsAssociative
 
     let identity x = x
-    let idIsIdForFuncComp(fn:'a->'b) (a:'a) =
+    let idIsIdForFuncComp(fn:'a->'a) (a:'a) =
         ((identity >> fn) a = fn a) && ((fn >> identity) a = fn a)
-    let compIsAssociative (a:'a->'b) (b:'b->'c) (c:'c->'d) (input:'a) =
+    let compIsAssociative (a:'a->'a) (b:'a->'a) (c:'a->'a) (input:'a) =
         (a >> (b >> c)) input = ((a >> b) >> c) input
 
     Check.Quick idIsIdForFuncComp

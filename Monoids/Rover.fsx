@@ -33,6 +33,7 @@ let turnRight r =
 
 type Message = MoveForward | MoveBackward | TurnLeft | TurnRight
 
+
 // Message -> Rover -> Rover
 let update message rover =
     match message with
@@ -41,8 +42,16 @@ let update message rover =
     | TurnLeft -> turnLeft rover
     | TurnRight -> turnRight rover
 
-
-[MoveForward; MoveForward; TurnLeft; TurnLeft; MoveBackward; TurnRight; MoveForward; MoveForward]
+[
+  MoveForward; 
+  MoveForward; 
+  TurnLeft; 
+  TurnLeft; 
+  MoveBackward; 
+  TurnRight; 
+  MoveForward; 
+  MoveForward
+]
 |> List.map update // Message list -> (Rover -> Rover) list
 |> List.reduce (>>) // (Rover -> Rover) list -> (Rover -> Rover)
 <| {x=0; y=0; direction=North}
